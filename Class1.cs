@@ -3,6 +3,85 @@ using System.Text;
 
 namespace Lab4Library
 {
+    public static class Class1
+    {
+        // Подзадание 1: Генерация массивов по правилу
+        public static void SubTask1_Calculate(int n, int rows, int cols, out double[] arr1D, out double[,] arr2D)
+        {
+            arr1D = new double[n];
+            arr2D = new double[rows, cols];
+            Random rand = new Random();
+
+            for (int i = 0; i < n; i++)
+            {
+                int k = rand.Next(1, 4);
+                arr1D[i] = (Math.Pow(2, k) * Math.Sqrt(n)) / Math.Pow(n, k);
+            }
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    int k = rand.Next(1, 4);
+                    arr2D[i, j] = (Math.Pow(2, k) * Math.Sqrt(rows)) / Math.Pow(rows, k);
+                }
+            }
+        }
+
+        // Подзадание 2: Поиск минимума и прибавление его ко всем элементам
+        public static double SubTask2_ProcessArray(double[] arr)
+        {
+            double min = arr[0];
+            for (int i = 1; i < arr.Length; i++)
+            {
+                if (arr[i] < min)
+                {
+                    min = arr[i];
+                }
+            }
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                arr[i] += min;
+            }
+
+            return min; // Возвращаем найденный минимум
+        }
+
+        // Подзадание 3: Вычисление суммы элементов выше побочной диагонали
+        public static int SubTask3_SumAboveAntiDiagonal(int[,] matrix, int n)
+        {
+            int sum = 0;
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    if (i + j < n - 1)
+                    {
+                        sum += matrix[i, j];
+                    }
+                }
+            }
+            return sum;
+        }
+
+        // Подзадание 4: Сортировка методом прямого включения
+        public static void SubTask4_Sort(int[] arr)
+        {
+            for (int i = 1; i < arr.Length; i++)
+            {
+                int key = arr[i];
+                int j = i - 1;
+
+                while (j >= 0 && arr[j] > key)
+                {
+                    arr[j + 1] = arr[j];
+                    j--;
+                }
+                arr[j + 1] = key;
+            }
+        }
+    }
     public class DataManager
     {
         private string[][] dataArray;
